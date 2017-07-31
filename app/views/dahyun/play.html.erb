@@ -1,53 +1,83 @@
-<!--소메뉴 nav바-->
+
 <style>
-    .col-sm-3{
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+.back{
+background-color: rgba(232,93,75,0.25);
+}
+
+.small{
+    width: 50px;
+    height: 48px;
+    padding: 5px;
+    border: 1px solid gray;
+    margin:0;
+}
+
+.strong{
+    font-weight:bold;
+}
+
+.center{
+    vertical-align:middle; 
+    text-align:center;
+    margin-top:10px;
+}
+
+
 </style>
 
-
+<!--소메뉴 nav바-->
 <div class="container font mt-2">
     <div class="col-md-6" id="flex-style">
-        <a class="navbar-brand option" href="/play"><a2>All</a2></a>
+        <a class="navbar-brand option pb-0" href="/play"><a2>All</a2></a>
             <div class="dropdown">
-                <a class="navbar-brand dropdown-toggle mr-3 font option" href="/play" data-toggle="dropdown" aria-haspopup="true"><a2>Genre</a2> </a>
+                <a class="navbar-brand dropdown-toggle mr-3 pb-0 font option" href="/play" data-toggle="dropdown" aria-haspopup="true"><a2>Genre</a2> </a>
                     <div class="dropdown-menu "  aria-labelledby="dropdownMenu2">
                         <ul class="d"><a href = "/play"><a2>a</a2></a></ul>
                         <ul class="d"><a href = "/play"><a2>b</a2></a></ul>
                         <ul class="d"><a href = "/play"><a2>c</a2></a></ul>
                     </div>
             </div>
-        <a class="navbar-brand option" href="/play"><a2>Like</a2></a>
-        <a class="navbar-brand option" href="/play"><a2>Follow</a2></a>
-        <a class="navbar-brand option" href="/play"><a2>A-Z</a2></a>
+        <a class="navbar-brand option pb-0" href="/play"><a2>Like</a2></a>
+        <a class="navbar-brand option pb-0" href="/play"><a2>Follow</a2></a>
+        <a class="navbar-brand option pb-0" href="/play"><a2>A-Z</a2></a>
         
         <div  class="customStyle">
             <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
-            <img type="submit" src='/assets/search.png' weight="30" height = "30" style="background-color:white">
+            <input type="button" class="search2">
+            
         </div>
+        
     </div>
+    <hr class="mb-0"/>
 </div>
+
+<!--list 메뉴-->
+<div class="container">
+    <div class="row mr-0 ml-0 pl-0 pb-3 pt-3 back">
+        <div class="col-1 text-center strong">#</div>
+        <div class="col-1 text-center strong"></div>
+        <div class="col-6 text-center strong">list</div>
+        <div class="col-2 text-center strong">genre</div>
+        <div class="col-2 text-center strong">like</div>
+    </div>
+    <hr class="mt-0" />  
+</div>
+
+
+
+
+<!--list-->
 
 <div class="container">
-    <div class="row">
-        <!--<%# @posts.each do |p| %> 나중에 img url로 반복문 돌릴거 ㅇㅇ-->
-        <div class="col-6 col-sm-3 "> <img class="img-circle ml-4" src="assets/logo-03.png" > <p class="text-center">user_name</p> </div>
-                    <!--<%# if p.image_url?
-                    <!--  <img class="img-circle" src="<%#=p.image_url%>">-->
-                    <!--<#% end %> img url반복 코드-->
-        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
-            <div class="clearfix hidden-sm-up"></div>
-        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
-        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
-        
-        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
-        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+    <% for i in 1..5 %>
+    <% arr=["힙합", "발라드", "r%b", "기타", "댄스"]%>
+    <div class="row mr-0 ml-0 pl-0">
+        <div class="col-1 center"><%=i%></div>
+        <div class="col-1 d-flex align-items-center"><img class="small rounded "src="assets/likelion.png"></div>
+        <div class="col-6 center">player 수혁아 부탁해 ㅎㅅㅎ</div>
+        <div class="col-2 center"><%=arr.sample%></div>
+        <div class="col-2 center" type="button">조아요</div>
     </div>
-    
-    
-    
-    
+    <hr/>
+    <%end%>
 </div>
-
-

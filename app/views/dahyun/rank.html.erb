@@ -1,12 +1,21 @@
 <!--소메뉴 nav바-->
 
+<style>
+    .back{
+background-color: rgba(232,93,75,0.25);
+}
+.strong{
+    font-weight:bold;
+}
 
+
+</style>
 
 <div class="container font mt-2">
     <div class="col-md-6" id="flex-style">
-        <a class="navbar-brand" style="color:black" href="/rank"><a2 class="option">All</a2></a>
+        <a class="navbar-brand pb-0 option" href="/rank"><a2>All</a2></a>
             <div class="dropdown">
-                <a class="navbar-brand dropdown-toggle mr-3 font option"  href="/rank" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a2>Genre</a2> </a>
+                <a class="navbar-brand dropdown-toggle mr-3 font option pb-0"  href="/rank" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a2>Genre</a2> </a>
                     <div class="dropdown-menu "  aria-labelledby="dropdownMenu2">
                         <ul class="d"><a href = "/rank"><a2>a</a2></a></ul>
                         <ul class="d"><a href = "/rank"><a2>b</a2></a></ul>
@@ -14,7 +23,7 @@
                     </div>
             </div>
             <div class="dropdown">
-                <a class="navbar-brand dropdown-toggle mr-3 font option" href="/rank" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a2>Group</a2> </a>
+                <a class="navbar-brand dropdown-toggle mr-3 font option pb-0" href="/rank" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a2>Group</a2> </a>
                     <div class="dropdown-menu "  aria-labelledby="dropdownMenu2">
                         <ul class="d"><a href = "/rank"><a2>composer</a2></a></ul>
                         <ul class="d"><a href = "/rank"><a2>lyricist</a2></a></ul>
@@ -24,7 +33,54 @@
             
             <div  class="customStyle">
                 <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
-                <img type="submit" src='/assets/search.png' weight="30" height = "30" style="background-color:white">
+                <input type="button" class="search2">
             </div>
     </div>
+    <hr class="mb-0 col-9 ml-0 pl-0 pr-0"/>
 </div>
+
+
+<!--rank 메뉴-->
+<div class="container pl-3 row">
+    <div class="col-9">
+    <div class="row mr-0 ml-0 pb-3 pt-3 back mr-0">
+        <div class="col-1 text-center strong pl-0">#</div>
+        <div class="col-2 text-center strong pl-0">name</div>
+        <div class="col-2 text-center strong pl-0">group</div>
+        <div class="col-2 text-center strong pl-0">genre</div>
+        <div class="col-2 text-center strong pl-0">score</div>
+        <div class="col-1 text-center strong pl-0">like</div>
+        <div class="col-1 text-center strong pl-0">follow</div>
+        <div class="col-1 text-center strong pl-0">scout</div>
+    </div>
+    <hr class="mt-0 col-9 ml-0 pl-0 pr-0 " />  
+
+
+<!--rank-->
+
+    
+        <% for i in 1..5 %>
+        <% arr=["힙합", "발라드", "r%b", "기타", "댄스"]%>
+        <% arr2=["작곡", "작사", "가수"]%>
+        <% arr3=["12345", "1234", "123", "12", "1"]%>
+            <div class="row">
+                <div class="col-1 text-center "><%=i%></div>
+                <div class="col-2 text-center">user_name</div>
+                <div class="col-2 text-center "><%=arr2.sample%></div>
+                <div class="col-2 text-center "><%=arr.sample%></div>
+                <div class="col-2 text-center "><%=arr3[i-1]%></div>
+                <div class="col-1 text-center" type="button">조아요</div>
+                <div class="col-1 text-center" type="button">팔로</div>
+                <div class="col-1 text-center" type="button">스카웃</div>
+            </div>
+            <hr/>
+            <%end%>
+        
+    </div>
+    
+    <div class="col-3 mr-0">
+        <img class="img-circle" src="assets/iu.PNG">
+    </div>
+    
+</div>
+

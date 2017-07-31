@@ -1,17 +1,53 @@
+
+<style>
+    .col-sm-3{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .img-holder{
+    max-width: 400px;
+    height: 200px;
+    }
+    .img-circle {
+    height: 100%;
+   border-radius: 100%;
+   overflow:hidden;
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
+    }
+    
+</style>
+
 <!--소메뉴 nav바-->
-<div class="container font mt-2">
-    <div class="col-md-6" id="flex-style">
-        <a class="navbar-brand option" href="/show"><a2>All</a2></a>
-        <a class="navbar-brand option" href="/show"><a2>Composer</a2></a>
-        <a class="navbar-brand option" href="/show"><a2>Lyricist</a2></a>
-        <a class="navbar-brand option" href="/show"><a2>Singer</a2></a>
+<div class="container font  mt-2">
+    <div class="col-md-6 " id="flex-style">
+        <a class="navbar-brand option pb-0" href="/show"><a2>All</a2></a>
+        <a class="navbar-brand option pb-0" href="/show"><a2>Composer</a2></a>
+        <a class="navbar-brand option pb-0" href="/show"><a2>Lyricist</a2></a>
+        <a class="navbar-brand option pb-0" href="/show"><a2>Singer</a2></a>
     
         <div  class="customStyle">
             <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
-            <img type="submit" src='/assets/search.png' weight="30" height = "30" style="background-color:white">
+            <input type="button" class="search2">
         </div>
     </div>
+    <hr/>
 </div>
 
-
+<div class="container">
+    <div class="row">
+        <!--<%# @posts.each do |p| %> 나중에 img url로 반복문 돌릴거 ㅇㅇ-->
+        <div class="col-6 col-sm-3  img-holder mb-5"> <img class="img-circle ml-4" src="assets/logo-03.png" > <p class="text-center">user_name</p> </div>
+                    <!--<%# if p.image_url?
+                    <!--  <img class="img-circle" src="<%#=p.image_url%>">-->
+                    <!--<#% end %> img url반복 코드-->
+        <div class="col-6 col-sm-3 img-holder mb-5"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+            <div class="clearfix hidden-sm-up mb-5"></div>
+        <div class="col-6 col-sm-3 img-holder mb-5"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+        <div class="col-6 col-sm-3 img-holder mb-5"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+        <div class="col-6 col-sm-3 img-holder mb-5"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+        <div class="col-6 col-sm-3 img-holder mb-5"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+    </div>
+</div>
 
