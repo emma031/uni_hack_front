@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <style type="text/css">
+    @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+    .font { font-family: 'Jeju Gothic', sans-serif;}
+    .nopadding{
+      padding-right:0;
+      padding-left:0;
+      padding-top:0;
+      padding-bottom:0;
+    }
+    ul {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left:0;
+    }
+    .d:hover{
+      background-color: #EEEEEE;
+    }
+    .img-circle {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    }
+    
+    ul.d{
+      padding-left: 10px;
+      padding-bottom:2px;
+      padding-top:2px;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+    
+    li {
+    list-style-type: none;
+    }
+    .smallfont{
+      font-size : 10px;
+    }
+    .nomargin{
+      margin-right:0;
+      margin-left:0;
+      margin-top:0;
+      margin-bottom:0;
+    }
+    
+    
+    #flex-style {
+      display: flex;
+      align-items: center;
+      padding-right: 0;
+    }
+    
+    #custom-row {
+      display: flex;
+      margin-right:0;
+      margin-left:0;
+    }
+    .customStyle {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+    
+    .custom-search {
+      border: 1px solid #333;
+      display: flex;
+      width: 100px;
+      height: 30px;
+    }
+    
+    .custom-submit {
+      display: flex;
+      height: 30px;
+      font-size: 13px;
+    }
+    
+    a1:hover { 
+    color: #F55F4C;
+    font-size : 22px;
+    }
+    
+    a1{
+    color: white;
+    }
+    
+    a2{
+      color:black;
+      font-size : 16px;
+    }
+    a2:hover { 
+      color: #F55F4C;
+      font-size:17px;
+    }
+    
+    .dropdown-toggle{
+      color:black;
+      margin-left:0;
+      border-left:0;
+    }
+    .dropdown-toggle:hover { 
+      color: #F55F4C;
+    }
+    
+  </style>
+  </head>
+  <body>
+    <!--navbar-->
+    <div class="font">
+      
+      <nav class="navbar navbar-light py-0 " style="background-color: #3F3B33">
+        <ul class="navbar-nav container" >
+          <div class="container nopadding">
+          <li>
+            <div class="row " id="custom-row">
+              <a class="col-md-2 nopadding img-responsive" href ="/main"><img  src='/assets/logo-03.png' height="80"></a>
+              <div  class="customStyle">
+                <input type="search" name="search" class="custom-search" placeholder = " search" />
+                  <img type="submit" src='/assets/search.png' weight="30" height = "28" style="background-color:white">
+              </div>
+              
+              <div class="col-md-6 " id="flex-style">
+                <a class="navbar-brand " href="/show"><a1>Show</a1></a>
+                <a class="navbar-brand " href="/play"><a1>Play</a1></a>
+                <a class="navbar-brand " href="/audition"><a1>Audition</a1></a>
+                <a class="navbar-brand " href="/rank"><a1>Rank</a1></a>
+                <a class="navbar-brand " href="/artist"><a1>Artist</a1></a>
+              </div>
+              <div id="flex-style">
+                <div class="row">
+                  <a class="navbar-brand" style="color:white" href="/#"><a1>Log in</a1></a>
+                  <a class="navbar-brand" style="color:white" href="/#"><a1>Sign in</a1></a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      </div>
+    </div>
+    <!--야자나무 이미지-->
+    
+
+
+  <%= yield %>
+  </body>
+</html>

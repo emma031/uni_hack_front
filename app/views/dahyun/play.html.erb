@@ -1,0 +1,53 @@
+<!--소메뉴 nav바-->
+<style>
+    .col-sm-3{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+
+<div class="container font mt-2">
+    <div class="col-md-6" id="flex-style">
+        <a class="navbar-brand option" href="/play"><a2>All</a2></a>
+            <div class="dropdown">
+                <a class="navbar-brand dropdown-toggle mr-3 font option" href="/play" data-toggle="dropdown" aria-haspopup="true"><a2>Genre</a2> </a>
+                    <div class="dropdown-menu "  aria-labelledby="dropdownMenu2">
+                        <ul class="d"><a href = "/play"><a2>a</a2></a></ul>
+                        <ul class="d"><a href = "/play"><a2>b</a2></a></ul>
+                        <ul class="d"><a href = "/play"><a2>c</a2></a></ul>
+                    </div>
+            </div>
+        <a class="navbar-brand option" href="/play"><a2>Like</a2></a>
+        <a class="navbar-brand option" href="/play"><a2>Follow</a2></a>
+        <a class="navbar-brand option" href="/play"><a2>A-Z</a2></a>
+        
+        <div  class="customStyle">
+            <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
+            <img type="submit" src='/assets/search.png' weight="30" height = "30" style="background-color:white">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <!--<%# @posts.each do |p| %> 나중에 img url로 반복문 돌릴거 ㅇㅇ-->
+        <div class="col-6 col-sm-3 "> <img class="img-circle ml-4" src="assets/logo-03.png" > <p class="text-center">user_name</p> </div>
+                    <!--<%# if p.image_url?
+                    <!--  <img class="img-circle" src="<%#=p.image_url%>">-->
+                    <!--<#% end %> img url반복 코드-->
+        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+            <div class="clearfix hidden-sm-up"></div>
+        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+        
+        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+        <div class="col-6 col-sm-3"> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+    </div>
+    
+    
+    
+    
+</div>
+
+

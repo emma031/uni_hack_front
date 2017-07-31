@@ -1,0 +1,41 @@
+// Place all the styles related to the dahyun controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ .font { font-family: 'Jeju Gothic', sans-serif;}
+    .nopadding{
+      padding-right:0;
+      padding-left:0;
+      padding-top:0;
+      padding-bottom:0;
+    }
+    ul {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left:0;
+    }
+    .d:hover{
+      background-color: #EEEEEE;
+    }
+    .img-circle {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    }
+    ul.d{
+      padding-left: 10px;
+      padding-bottom:2px;
+      padding-top:2px;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+    
+    li {
+    list-style-type: none;
+    }
+    .smallfont{
+      font-size : 10px;
+    }
