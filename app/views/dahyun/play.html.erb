@@ -1,4 +1,6 @@
-
+<head>
+      <link rel="stylesheet" type="text/css" href="/assets/play.scss">
+</head>
 <style>
 .back{
 background-color: rgba(232,93,75,0.25);
@@ -74,7 +76,24 @@ background-color: rgba(232,93,75,0.25);
     <div class="row mr-0 ml-0 pl-0">
         <div class="col-1 center"><%=i%></div>
         <div class="col-1 d-flex align-items-center"><img class="small rounded "src="assets/likelion.png"></div>
-        <div class="col-6 center">player 수혁아 부탁해 ㅎㅅㅎ</div>
+        <div class="col-6">
+
+            
+                 
+                <img class="cover" src="images/cover.jpg" alt="">
+         
+                <div class="player gradient">
+         
+                    <a class="button gradient" id="play" href="" title=""></a>
+                    <a class="button gradient" id="mute" href="" title=""></a>
+                 
+                        <input type="range" id="seek" value="0" max=""/>
+             
+                    <a class="button gradient" id="close" href="" title=""></a>
+                     
+                </div><!-- / player -->
+            
+        </div> 
         <div class="col-2 center"><%=arr.sample%></div>
         <div class="col-2 center" type="button">조아요</div>
     </div>
