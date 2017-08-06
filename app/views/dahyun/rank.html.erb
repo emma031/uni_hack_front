@@ -8,7 +8,10 @@ background-color: rgba(232,93,75,0.25);
     font-weight:bold;
 }
 
-
+.fix{
+    position: fixed;
+    margin-left: 1050px;
+}
 </style>
 
 <div class="container font mt-2">
@@ -44,7 +47,7 @@ background-color: rgba(232,93,75,0.25);
 
 
 <!--rank 메뉴-->
-<div class="row d-flex justify-content-end pt-0 ml-3">
+<div class="row pt-0 ml-3">
     <div class="col-9 mr-0 pt-0">    <!--1부분 시작-->
     <div class="row pb-3 pt-3 back ">
         <div class="col-1 text-center strong pl-0">#</div>
@@ -62,7 +65,7 @@ background-color: rgba(232,93,75,0.25);
 <!--rank-->
 
     
-        <% for i in 1..5 %>
+        <% for i in 1..15 %>
         <% arr=["힙합", "발라드", "r%b", "기타", "댄스"]%>
         <% arr2=["작곡", "작사", "가수"]%>
         <% arr3=["12345", "1234", "123", "12", "1"]%>
@@ -71,7 +74,7 @@ background-color: rgba(232,93,75,0.25);
                 <div class="col-2 text-center">user_name</div>
                 <div class="col-2 text-center "><%=arr2.sample%></div>
                 <div class="col-2 text-center "><%=arr.sample%></div>
-                <div class="col-1 text-center "><%=arr3[i-1]%></div>
+                <div class="col-1 text-center "><%=arr3.sample%></div>
                 <div class="col-1 text-center" type="button">조아요</div>
                 <div class="col-1 text-center" type="button">팔로</div>
                 <div class="col-1 text-center" type="button">스카웃</div>
@@ -81,10 +84,14 @@ background-color: rgba(232,93,75,0.25);
         
     </div>
     
-    <div class="col-3 mr-0 p-2"> <!--2부분 시작-->
+    <div class="col-3 mr-0 p-2 fix"> <!--2부분 시작-->
         <h2 class="maincolor strong text-center mr-5">이달의 1위<br/>아티스트</h2>
         <img class="img-circle ml-5"  src="assets/iu.PNG">
     </div>
+    
+</div>
+
+<div class="container">
     
 </div>
 

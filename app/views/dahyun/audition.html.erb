@@ -18,7 +18,7 @@
                         <ul class="d"><a href = "/rank"><a2>singer</a2></a></ul>
                     </div>
             </div>
-            
+            <a href="/auditions/new">새 글 쓰기</a>
             <div  class="customStyle">
             <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
             <input type="button" class="search2">
@@ -31,16 +31,16 @@
 
 <div class="container">
     <div class="row">
-        <!--<%# @posts.each do |p| %> 나중에 img url로 반복문 돌릴거 ㅇㅇ-->
-        <div class="col-6 col-sm-3  img-holder mb-5"> <p class="text-center">post_title</p><img class="img-circle ml-4" src="assets/logo-03.png" > <p class="text-center">user_name</p> </div>
-                    <!--<%# if p.image_url?
-                    <!--  <img class="img-circle" src="<%#=p.image_url%>">-->
-                    <!--<#% end %> img url반복 코드-->
-        <div class="col-6 col-sm-3 img-holder mb-5"> <p class="text-center">post_title</p><img class="img-circle imgh ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
-            <div class="clearfix hidden-sm-up mb-5"></div>
-        <div class="col-6 col-sm-3 img-holder mb-5"> <p class="text-center">post_title</p><img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
-        <div class="col-6 col-sm-3 img-holder mb-5"><p class="text-center">post_title</p> <img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
-        <div class="col-6 col-sm-3 img-holder mb-5"> <p class="text-center">post_title</p><img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
-        <div class="col-6 col-sm-3 img-holder mb-5"> <p class="text-center">post_title</p><img class="img-circle ml-4" src="assets/logo-03.png"> <p class="text-center">user_name</p> </div>
+        <% @auditions.each do |a| %> 
+            <div class="col-6 col-sm-3  img-holder mb-5 img"> <p class="text-center"><%= a.title %></p>
+                <% if a.user.avatar %>
+                <a href="/auditions/<%= a.id %>"><img class="img-circle ml-4" src="<%= a.user.avatar.url %>" ></a>
+                <% else %>
+                <a href="/auditions/<%= a.id %>"><img class="img-circle ml-4" src="assets/logo-03.png" ></a>
+                <% end %>
+                <p class="text-center"><%= a.user.name %></p>
+            </div>
+        <% end %>
     </div>
 </div>
+          

@@ -19,11 +19,11 @@
       padding-bottom:0;
     }
     
-    img:hover{
+    .img:hover{
       opacity: 0.4;
     }
     
-    .img-circle2 {
+    .img-circle2{
     display: inline-block;
     position: relative;
     width: 300px;
@@ -47,10 +47,9 @@
         color: #F55F4C;
     }
     
-    p,h1,h2,h3{
+    p,h1,h2,h3,footer,div, container, select,ul{
       font-family: 'Jeju Gothic', sans-serif;
     }
-    
     
     ul {
     list-style-type: none;
@@ -76,7 +75,11 @@
     }
     a:hover{
       text-decoration: none;
+      background-color:none;
     }
+    a:visited {
+    color: none;
+}
     
     li {
     list-style-type: none;
@@ -149,7 +152,7 @@
       color: #F55F4C;
     }
     .search{
-       border:none; 
+       border:none;
        background:url(assets/searchw.png);
        outline: none;
        width: 28px;
@@ -182,7 +185,7 @@
           <li>
             <div class="row " id="custom-row">
               <div class="col-2 nopadding">
-              <a class="col-md-2 nopadding img-responsive" href ="/main"><img  src='/assets/logo-03.png' height="80"></a>
+              <a class="col-md-2 nopadding img-responsive" href ="/main"><img  src='/assets/logob.png' height="80"></a>
               </div>
               
               <div class="col-5 pl-5" id="flex-style">
@@ -190,7 +193,6 @@
                 <a class="navbar-brand " href="/play"><a1>Play</a1></a>
                 <a class="navbar-brand " href="/audition"><a1>Audition</a1></a>
                 <a class="navbar-brand " href="/rank"><a1>Rank</a1></a>
-                <a class="navbar-brand " href="/artist"><a1>Artist</a1></a>
               </div>
               
               <div  class="customStyle cod-3">
@@ -199,11 +201,14 @@
               </div>
               
               
-              <div class="row col-3 ml-5 " id="flex-style">
-                
-                  <a class="navbar-brand" style="color:white" href="/#"><a1>Log in</a1></a>
-                  <a class="navbar-brand" style="color:white" href="/#"><a1>Sign in</a1></a>
-                
+              <div class="row col-3 ml-5" id="flex-style">
+              <% if user_signed_in? %>
+                  <a class="navbar-brand" href="/users/edit"><a1><%= current_user.name %></a1></a>
+                  <a class="navbar-brand" href="/users/sign_out" data-method="delete"><a1>Log out</a1></a>
+              <% else %>    
+                  <a class="navbar-brand"  href="/users/sign_in"><a1>Log in</a1></a>
+                  <a class="navbar-brand"  href="/users/sign_up"><a1>Sign in</a1></a>
+              <% end %>  
               </div>
             </div>
           </li>
@@ -212,9 +217,12 @@
       </div>
     </div>
     <!--야자나무 이미지-->
-    
+   
 
 
   <%= yield %>
   </body>
+  
+   
+    
 </html>

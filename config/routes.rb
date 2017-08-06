@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :plays
+  
+  resources :auditions
+
+  devise_for :users
   get '/main' => 'dahyun#main'
   
   root 'dahyun#main'
@@ -7,7 +12,6 @@ Rails.application.routes.draw do
   get '/show' => 'dahyun#show'
   get '/audition' => 'dahyun#audition'
   get '/rank' => 'dahyun#rank'
-  get '/artist' => 'dahyun#artist'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

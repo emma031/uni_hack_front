@@ -1,6 +1,3 @@
-<head>
-      <link rel="stylesheet" type="text/css" href="/assets/play.scss">
-</head>
 <style>
 .back{
 background-color: rgba(232,93,75,0.25);
@@ -25,6 +22,28 @@ background-color: rgba(232,93,75,0.25);
 }
 
 
+.col-8{
+    margin:0;
+}
+
+.mt{
+    margin-top:5px;
+}
+
+hr{
+    margin-top:0;
+    margin-bottom:10px;
+}
+
+.mb{
+    margin-bottom: 3px;
+}
+
+.s-font{
+    font-size: 12px;
+    color: gray;
+}
+
 </style>
 
 <!--소메뉴 nav바-->
@@ -42,7 +61,7 @@ background-color: rgba(232,93,75,0.25);
         <a class="navbar-brand option pb-0" href="/play"><a2>Like</a2></a>
         <a class="navbar-brand option pb-0" href="/play"><a2>Follow</a2></a>
         <a class="navbar-brand option pb-0" href="/play"><a2>A-Z</a2></a>
-        
+        <a class="navbar-brand option pb-0" href="/plays/new">새 글 쓰기</a>
         <div  class="customStyle">
             <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
             <input type="button" class="search2">
@@ -58,9 +77,10 @@ background-color: rgba(232,93,75,0.25);
     <div class="row mr-0 ml-0 pl-0 pb-3 pt-3 back">
         <div class="col-1 text-center strong">#</div>
         <div class="col-1 text-center strong"></div>
-        <div class="col-6 text-center strong">list</div>
-        <div class="col-2 text-center strong">genre</div>
-        <div class="col-2 text-center strong">like</div>
+        <div class="col-8 text-center strong">list</div>
+        <div class="col-1 text-center strong">genre</div>
+        <div class="col-1 text-center strong">like</div>
+
     </div>
     <hr class="mt-0" />  
 </div>
@@ -70,33 +90,51 @@ background-color: rgba(232,93,75,0.25);
 
 <!--list-->
 
-<div class="container">
-    <% for i in 1..5 %>
-    <% arr=["힙합", "발라드", "r%b", "기타", "댄스"]%>
+<div class="container music">
+    <% @play.each do |p| %>
     <div class="row mr-0 ml-0 pl-0">
-        <div class="col-1 center"><%=i%></div>
-        <div class="col-1 d-flex align-items-center"><img class="small rounded "src="assets/likelion.png"></div>
-        <div class="col-6">
-
-            
-                 
-                <img class="cover" src="images/cover.jpg" alt="">
-         
-                <div class="player gradient">
-         
-                    <a class="button gradient" id="play" href="" title=""></a>
-                    <a class="button gradient" id="mute" href="" title=""></a>
-                 
-                        <input type="range" id="seek" value="0" max=""/>
-             
-                    <a class="button gradient" id="close" href="" title=""></a>
-                     
-                </div><!-- / player -->
-            
+        <div class="col-1 center"><%= p.id %></div>
+        <div class="col-1 d-flex align-items-center"> 
+            <% if p.image.url %>
+                <img class="small rounded " src="<%= p.image.url %>">
+            <% else %>
+                <img class="small rounded " src="assets/likelion.png">
+            <% end %>            
+        </div>
+        <div class="col-8 "> 
+        <li><%= p.title %></li>
+        <li>
+               <div class="wrapper row mr-0 mt-1 mb-1">
+                            <button type="button" class="playButton"></button>
+                            <button type="button" class="pauseButton" ></button>
+                        <div class="defaultBar d-flex  align-items-center mr-2 ml-3">
+                            <div class="progressBar"></div>
+                            <div class="progressCircle mb-5"></div>
+                        </div>
+                            <div class="row ml-3 mt">
+                            <span class="mr-1 currentTime">0:00</span> / 
+                            <span class="ml-1 fullDuration">0:00</span>
+                            </div>  
+                </div>
+        </li>
+        <li class="mb s-font">
+            <%= p.group %>
+        </li>
         </div> 
-        <div class="col-2 center"><%=arr.sample%></div>
-        <div class="col-2 center" type="button">조아요</div>
+        <div class="col-1 center"><%= p.genre %></div>
+        <div class="col-1 center" type="button">조아요</div>
     </div>
     <hr/>
     <%end%>
 </div>
+
+
+
+<!-- 여기 연결 소스 -->
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="/assets/player.js"></script>
+<link rel="stylesheet" href="/assets/player.scss"/>
+

@@ -1,4 +1,6 @@
-<style type="text/css">
+
+  <style type="text/css">
+
     .sect1{
         height:500px;
         background-image:url("assets/main2.png");
@@ -20,9 +22,7 @@
         
     }
     
-    div{
-        font-family: 'Jeju Gothic', sans-serif;
-    }
+    
     
     
     .white{
@@ -31,14 +31,19 @@
     
     
     
-    footer{
+    .footer{
         background-color:#3F3B33;
         height: 100px;
         padding-top:25px;
     }
+   
+  </style>
+  </head>
+  <body>
+    <!--navbar-->
     
-</style>
-
+    <!--야자나무 이미지-->
+   
 <div class ="container sect1" >
 </div>
 
@@ -52,7 +57,7 @@
             ...
             <p>이 동그라미 색 너무 구린데 제발 누가 해결좀...</p>
         </div>
-        <img class="img-circle2 p-2 mr-3" src="assets/wlogo.png">
+        <img class="img-circle2 p-2 mr-3" src="assets/logob.png">
         
     </div>
 </div>
@@ -60,7 +65,7 @@
 <div class ="container sect3 ">
     <h1 class="font-italic font-weight-bold white pb-4">이번 달 1위 아티스트</h1>
     <div class="row">
-        <img class="img-circle3 p-2 ml-3" src="assets/iu.PNG">
+        <img class="img-circle3 p-2 ml-3 img" src="assets/iu.PNG">
         
         <div class="offset-md-2" >
             <p class="font-weight-bold">아티스트 소개 내용</p>
@@ -71,12 +76,22 @@
     </div>
 </div>
 
-<footer>
+<footer class="footer">
     <div class = "d-flex flex-column ">
             <ul class="white  mx-auto mb-1"> 신재현 오동수 손다현 윤수혁 </ul> 
             <ul class="white  mx-auto">ⓒ  likelion  <img src="/assets/likelion.png" weight="25"height="15"> </ul>
         
         </div>
 </footer>
+
+
+
+  <%= yield %>
+  </body>
+
+</html>
+
+
+
     
     
