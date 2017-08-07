@@ -1,0 +1,82 @@
+<style>
+  
+.mt{
+  margin-top: 30px;
+}
+
+a {
+  color: #F55F4C;
+  text-decoration: none;
+}
+
+a:hover {
+     color:#c1200b;
+}
+
+input{
+  background-color: rgba(232,93,75,0.25);
+      outline-offset: 0px;
+      border-color: white;
+      border-width: 2px;
+    border-style: none;
+    border-image: none;
+}
+
+h6{
+  margin-top:4px;
+  margin-bottom:4px;
+}
+
+.btn {
+  background-color: white;
+  border-color: gray;
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+.btn:hover {
+  color: #F55F4C;
+  background-color:rgba(232,93,75,0.1);
+}
+
+.col-1{
+  margin-top: 48px;
+  padding-left:40px
+}
+</style>
+
+<div class="container mt-5 ">
+  <h2 class="font-weight-bold maincolor">Log in</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  
+<div class="row">
+<div class="col-2">
+      <div class="field mt ">
+    <h6> 이메일을 입력하세요: </h6>
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+  
+
+  <div class="field mt ">
+    <h6> 비밀번호를 입력하세요: </h6>
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+</div>
+
+<div class="col-1">
+<button class="btn" type="submit">Login</button>
+</div>
+</div>
+
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field mt-1">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>

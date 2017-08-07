@@ -1,0 +1,114 @@
+<style>
+  .title{
+    font-size:22px;
+    font-weight: bold;
+  }
+  
+  .content{
+    font-size:16px;
+  }
+  
+  .small{
+    width: 50px;
+    height: 48px;
+    padding: 5px;
+    border: 1px solid gray;
+    margin:0;
+}
+
+.img-circle{
+  width:50px;
+  height:50px;
+}
+
+p{
+  margin-top:30px;
+  margin-bottom: 30px;
+}
+
+.name{
+  font-size:17px;
+}
+
+.time{
+  font-size: 12px;
+  color: #adadad;
+}
+
+.container>.row{
+  padding:0;
+  margin:0;
+}
+
+a {
+  color: #F55F4C;
+  text-decoration: none;
+}
+
+a:hover {
+     color:#c1200b;
+}
+
+a:click{
+  text-decoration: none;
+  color:#c1200b;
+}
+</style>
+
+<div class="container mt-5">
+  <div class="row">
+    <img class="small rounded mr-2" src="<%= @audition.user.avatar.url %>">
+    <div>
+      <span class="name"><%= @audition.user.name %></span> <br/>
+      <!--<#%if time_ago(@audition.created_at) <   %>     
+      //글 작성한지 하루가 지나면 그냥 언제 작성했다고 뜨게 하고싶은데 ㅠㅠ 어케하면 조을까유--> 
+      <span class="time"><%="#{time_ago_in_words(@audition.created_at)}전"%></span>
+      <!--<#%else%>-->
+      <!--<span class="time"><%="#{(@audition.created_at.to_date)}"%></span>-->
+      <!--<#%end%>-->
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <p id="notice"><%= notice %></p>
+</div>
+
+<div class="container">
+  <p class="title">
+    <%= @audition.title %>
+  </p>
+</div>
+
+<div class="container">
+  <p class="content">
+    <%= simple_format( @audition.content) %>
+  </p>
+</div>
+
+<div class="container d-flex justify-content-end align-items-center">
+  <div class="mr-auto time"> 조회수: <%= "#{@audition.unique_impression_count}"%>
+  </div>
+  
+  <div></div>
+  <span class="mx-1 a">
+    <a href="/audition">목록으로</a>
+  <% if current_user.id == @audition.user.id %>
+  </span>
+  <span class="mx-1">|</span>
+  <span class="mx-1">
+    <%= link_to '삭제', audition_path(@audition), method: 'delete' %>
+  </span> 
+  <span class="mx-1">|</span>
+  <%= link_to '수정', edit_audition_path(@audition) %>
+  <% end %>
+  </div>
+</div>
+
+
+
+
+
+

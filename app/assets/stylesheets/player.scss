@@ -1,0 +1,85 @@
+#hello{
+    background-color: none;
+}
+// 버튼 아이디
+.wrapper{
+    width:auto;
+    margin:0;
+}
+
+
+
+.defaultBar{
+    width:500px;
+    position:relative;
+    background-color:gray;
+    height:7px;
+    margin-top:10px;
+    margin-left:5px;
+}
+
+.progressBar{
+    position:absolute;
+    height:7px;
+    background-color: #F55F4C;
+    width:0px;
+}
+
+.progressCircle{
+    position:absolute;
+    border-radius: 100%;
+    width:15px;
+    height:15px;
+    background-color:#F55F4C;
+}
+
+.playButton{
+    background:url(/assets/play.png);
+    border:none;
+    outline: none;
+    height:32px;
+    width:32px;
+    background-repeat:no-repeat;
+    background-position:center;
+    margin-right: 7px;
+}
+
+.pauseButton{
+    background:url(/assets/stop.png);
+    outline: none;
+    border:none;
+    height:32px;
+    width:32px;
+    background-repeat:no-repeat;
+    background-position:center;
+    margin-right: 7px;
+}
+
+.muteButton{
+    background:url(/assets/speaker.png);
+    outline: none;
+    border:none;
+    height:32px;
+    width:32px;
+    background-image:url(/assets/speaker.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    margin-right: 7px;
+}
+
+.notMute{
+    background:url(/assets/notspeaker.png);
+    outline: none;
+    border:none;
+    height:32px;
+    width:32px;
+    background-image:url(/assets/notspeaker.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    margin-right: 7px;
+}
+
+.muteButton:atcive,#playButton:active{
+     position:relative;
+     top:2px;
+}

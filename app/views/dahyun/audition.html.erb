@@ -1,7 +1,41 @@
+
+
+<style>
+    .title{
+        font-size:16px;
+        font-weight: bold;
+    }
+    
+    .name{
+        margin-top:10px;
+        font-size:15px;
+    }
+    
+.btn {
+  background-color: #F55F4C;
+  border-color:#F55F4C;
+  color:white;
+  padding-bottom:7px;
+}
+.btn:hover {
+  color: #F55F4C;
+  background-color:rgba(232,93,75,0.1);
+}
+
+hr{
+    margin-top:9px;
+}
+
+.1> .active {
+   border-bottom: 4px solid #db6153;
+   color:  #F55F4C;
+}
+</style>
+
 <!--소메뉴 nav바-->
-<div class="container font mt-2">
+<div class="container font mt-2 d-flex justify-content-start">
     <div class="col-md-6" id="flex-style">
-        <a class="navbar-brand pb-0" href="/audition"><a2 class="option">All</a2></a>
+        <a class="navbar-brand pb-0 option" href="/audition"><a2>All</a2></a>
             <div class="dropdown">
                 <a class="navbar-brand dropdown-toggle pb-0 mr-3 font option "  href="/audition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a2>Genre</a2> </a>
                     <div class="dropdown-menu "  aria-labelledby="dropdownMenu2">
@@ -18,27 +52,34 @@
                         <ul class="d"><a href = "/rank"><a2>singer</a2></a></ul>
                     </div>
             </div>
-            <a href="/auditions/new">새 글 쓰기</a>
             <div  class="customStyle">
             <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
             <input type="button" class="search2">
             </div>
-    </div>
-    <hr/>
+            
+        </div>
+        
+        <div class="ml-auto">
+                <a href="/auditions/new">
+                    <button class="btn mr-5">새 글 쓰기</button>
+                </a>
+        </div>
 </div>
+ 
+<div class="container"><hr/></div>
 
 <!--body-->
 
 <div class="container">
     <div class="row">
         <% @auditions.each do |a| %> 
-            <div class="col-6 col-sm-3  img-holder mb-5 img"> <p class="text-center"><%= a.title %></p>
+            <div class="col-6 col-sm-3 img-holder mb-5 img"> <p class="text-center title"><%= a.title %></p>
                 <% if a.user.avatar %>
                 <a href="/auditions/<%= a.id %>"><img class="img-circle ml-4" src="<%= a.user.avatar.url %>" ></a>
                 <% else %>
                 <a href="/auditions/<%= a.id %>"><img class="img-circle ml-4" src="assets/logo-03.png" ></a>
                 <% end %>
-                <p class="text-center"><%= a.user.name %></p>
+                <p class="text-center name"><%= a.user.name %></p>
             </div>
         <% end %>
     </div>

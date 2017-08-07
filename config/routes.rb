@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/show' => 'dahyun#show'
   get '/audition' => 'dahyun#audition'
   get '/rank' => 'dahyun#rank'
+  get '/mypage' => 'dahyun#mypage'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

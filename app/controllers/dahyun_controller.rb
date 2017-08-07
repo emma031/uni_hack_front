@@ -1,25 +1,25 @@
 class DahyunController < ApplicationController
-  def show
-    # render :layout => 'pagination'
-  end
-  
-  def play
-    @play = Play.all
-
-    # render :layout => 'pagination'
-  end
-  
-  def rank
-    # render :layout => 'pagination'
-  end
-  
-  def audition
-    @auditions = Audition.all
-    # render :layout => 'pagination'
-  end
-
-  
-  def main
+    def audition
+        @auditions = Audition.all.reverse
+    end
     
-  end
+    def main
+        
+    end
+    
+    def mypage
+        
+    end
+    
+    def play
+        @play = Play.all
+    end
+    
+    def rank
+        
+    end
+    
+    def show
+    
+    end
 end

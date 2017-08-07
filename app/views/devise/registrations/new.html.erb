@@ -1,0 +1,120 @@
+<style>
+  
+.mt{
+  margin-top: 30px;
+}
+
+a {
+  color: #F55F4C;
+  text-decoration: none;
+}
+
+a:hover {
+     color:#c1200b;
+}
+.field_with_errors {
+    padding: 2px;
+    background-color: none;
+    display: table;
+    color:  #F55F4C;
+}
+input{
+  background-color: rgba(232,93,75,0.15);
+      outline-offset: 0px;
+      border-color: white;
+      border-width: 2px;
+    border-style: none;
+    border-image: none;
+}
+#error_explanation ul li {
+    font-size: 12px;
+    list-style: none;
+}
+h2{
+  color: #F55F4C;
+}
+option:hover {
+  background-color: rgba(232,93,75,0.15);
+}
+h6{
+  margin-top:4px;
+  margin-bottom:4px;
+  margin-right:4px;
+  text-align: center;
+}
+
+w{
+  font-size:12px;
+  color: gray;
+}
+
+contain{
+  width: 400px;
+  height: auto;
+      align-items: center;
+}
+
+[type=submit]{
+  -webkit-appearance: none;
+}
+a:not([href]):not([tabindex]) {
+    color: #F55F4C;
+    text-decoration: none;
+}
+
+</style>
+
+
+
+<div class="container mt-5 ">
+<h2 class="font-weight-bold">Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+<div class="contain">
+  <div class="field row mt">
+    <h6 class="col-2">이메일 </h6><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field row mt">
+    <h6 class="col-2">닉네임 </h6><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+   <div class="field">
+    <%= f.label "프로필 사진" %><br />
+    <%= f.file_field :avatar %>
+  </div>
+
+  
+  <div class="field row mt">
+    <h6 class="col-2">아티스트 그룹 선택 </h6><br />
+    <select name="user[artist]" id="user_artist">
+        <option value="작사가">작사가</option>
+        <option value="작곡가">작곡가</option>
+        <option value="가수">가수</option>
+    </select>  
+    </div>
+
+  <div class="field row mt">
+    <h6 class="col-2">비밀번호 </h6>
+    
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+  <w>비밀번호는 <%= @minimum_password_length %>자 이상으로 입력하세요.</w>
+
+  <div class="field row mt">
+    <h6 class="col-2">비밀번호 확인</h6>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <input type="submit" value="Sign up">
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+</div>
