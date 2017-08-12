@@ -28,8 +28,8 @@ class PlaysController < ApplicationController
     @play = Play.new(play_params)
     respond_to do |format|
       if @play.save
-        format.html { redirect_to @play, notice: 'Play was successfully created.' }
-        format.json { render :show, status: :created, location: @play }
+        format.html { redirect_to "/play", notice: 'Play was successfully created.' }
+        format.json { render "/play", status: :created, location: @play }
       else
         format.html { render :new }
         format.json { render json: @play.errors, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class PlaysController < ApplicationController
   def update
     respond_to do |format|
       if @play.update(play_params)
-        format.html { redirect_to @play, notice: 'Play was successfully updated.' }
+        format.html { redirect_to "/play", notice: 'Play was successfully updated.' }
         format.json { render :show, status: :ok, location: @play }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class PlaysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def play_params
-      params.require(:play).permit(:title, :group, :genre, :image)
+      params.require(:play).permit(:title, :group, :genre, :image, :songurl)
     end
 end

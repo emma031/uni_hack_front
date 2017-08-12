@@ -27,6 +27,18 @@
         <option value="가수">가수</option>
     </select>   </div>
 
+  <div class="field">
+    <%= f.label :genre %><br />
+    <pre>현재 : <%= current_user.genre %></pre>
+    <select name="user[genre]" id="user_genre">
+        <option value="발라드">발라드</option>
+        <option value="힙합">힙합</option>
+        <option value="R&B">R&B</option>
+        <option value="댄스">댄스</option>
+        <option value="Electronic">Electronic</option>
+    </select>  
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

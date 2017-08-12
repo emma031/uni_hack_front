@@ -12,6 +12,8 @@ background-color: rgba(232,93,75,0.25);
     position: fixed;
     margin-left: 1050px;
 }
+  
+
 </style>
 
 <div class="container font mt-2">
@@ -64,27 +66,25 @@ background-color: rgba(232,93,75,0.25);
 
 <!--rank-->
 
-    
-        <% for i in 1..15 %>
-        <% arr=["힙합", "발라드", "r%b", "기타", "댄스"]%>
-        <% arr2=["작곡", "작사", "가수"]%>
-        <% arr3=["12345", "1234", "123", "12", "1"]%>
+        <% @user.each do |u| %>
+
             <div class="row">
-                <div class="col-1 text-center "><%=i%></div>
-                <div class="col-2 text-center">user_name</div>
-                <div class="col-2 text-center "><%=arr2.sample%></div>
-                <div class="col-2 text-center "><%=arr.sample%></div>
-                <div class="col-1 text-center "><%=arr3.sample%></div>
+                <div class="col-1 text-center ">랭킹</div>
+                <div class="col-2 text-center"><%= u.name %></div>
+                <div class="col-2 text-center "><%= u.artist %></div>
+                <div class="col-2 text-center "><%= u.genre %></div>
+                <div class="col-1 text-center ">보류</div>
                 <div class="col-1 text-center" type="button">조아요</div>
                 <div class="col-1 text-center" type="button">팔로</div>
                 <div class="col-1 text-center" type="button">스카웃</div>
             </div>
             <hr/>
-            <%end%>
+            
+        <% end %>
         
     </div>
     
-    <div class="col-3 mr-0 p-2 fix"> <!--2부분 시작-->
+    <div class="col-3 mr-0 p-2 "> <!--2부분 시작-->
         <h2 class="maincolor strong text-center mr-5">이달의 1위<br/>아티스트</h2>
         <img class="img-circle ml-5"  src="assets/iu.PNG">
     </div>

@@ -19,8 +19,9 @@
       padding-bottom:0;
     }
     
-    input, textarea, button{
+    input, textarea, button, input:click, textarea:click, button:click{
       outline: none;
+      border:none;
     }
     
     .img:hover{
@@ -177,7 +178,13 @@
        height: 28px;
     }
     
+    .ac{
+     color: #F55F4C;
+     font-size : 22px;
+    }
   </style>
+
+
   </head>
   <body>
     <!--navbar-->
@@ -193,7 +200,7 @@
               </div>
               
               <div class="col-5 pl-5" id="flex-style">
-                <a class="navbar-brand " href="/show"><a1>Show</a1></a>
+                <a class="navbar-brand " href="/show"><a1 class>Show</a1></a>
                 <a class="navbar-brand " href="/play"><a1>Play</a1></a>
                 <a class="navbar-brand " href="/audition"><a1>Audition</a1></a>
                 <a class="navbar-brand " href="/rank"><a1>Rank</a1></a>
@@ -230,3 +237,15 @@
    
     
 </html>
+
+
+ <script>
+  
+  $(document).ready(function(){
+    $('a1').click(function() {
+        $('a1').removeClass('ac');
+        $(this).addClass('ac');
+    });
+});
+</script>
+

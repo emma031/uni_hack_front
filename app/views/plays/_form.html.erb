@@ -15,6 +15,10 @@
     <%= f.file_field :image %>
   </div>
   <div class="field">
+    <%= f.label :songurl %><br>
+    <%= f.file_field :songurl %>
+  </div>
+  <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
@@ -26,7 +30,7 @@
     <%= f.label :genre %><br>
     <%= f.text_field :genre %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+ <div class="actions">
+    <input type="submit" name="commit" value="등록">
   </div>
 <% end %>

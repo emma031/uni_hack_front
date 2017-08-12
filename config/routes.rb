@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  resources :plays
+  resources :shows
+  resources :plays do
+    post "/playlike", to: "play_likes#like_toggle"
+  end
   
-  resources :auditions
+  resources :auditions do
+    resources :audition_comments,  only: [:create,:destroy]
+  end
+  
 
+  
   devise_for :users
   get '/main' => 'dahyun#main'
   
@@ -13,6 +20,7 @@ Rails.application.routes.draw do
   get '/audition' => 'dahyun#audition'
   get '/rank' => 'dahyun#rank'
   get '/mypage' => 'dahyun#mypage'
+  get '/test' => 'dahyun#test'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

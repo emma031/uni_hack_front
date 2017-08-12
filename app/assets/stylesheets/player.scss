@@ -55,31 +55,30 @@
     margin-right: 7px;
 }
 
-.muteButton{
-    background:url(/assets/speaker.png);
-    outline: none;
-    border:none;
-    height:32px;
-    width:32px;
-    background-image:url(/assets/speaker.png);
-    background-repeat:no-repeat;
-    background-position:center;
-    margin-right: 7px;
-}
 
-.notMute{
-    background:url(/assets/notspeaker.png);
-    outline: none;
-    border:none;
-    height:32px;
-    width:32px;
-    background-image:url(/assets/notspeaker.png);
-    background-repeat:no-repeat;
-    background-position:center;
-    margin-right: 7px;
-}
-
-.muteButton:atcive,#playButton:active{
+.muteButton:active,#playButton:active{
      position:relative;
      top:2px;
+}
+
+.likeButton{
+    background:url(/assets/like.png);
+    outline: none;
+    border:none;
+    height:28px;
+    width:28px;
+    background-repeat:no-repeat;
+    background-position:center;
+    margin-right: 7px;
+}
+
+.likedButton{
+    background:url(/assets/like2.png);
+    outline: none;
+    border:none;
+    height:28px;
+    width:28px;
+    background-repeat:no-repeat;
+    background-position:center;
+    margin-right: 7px;
 }

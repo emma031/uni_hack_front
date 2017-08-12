@@ -1,4 +1,6 @@
 class DahyunController < ApplicationController
+    before_action :authenticate_user!, only: [:play]
+
     def audition
         @auditions = Audition.all.reverse
     end
@@ -16,7 +18,7 @@ class DahyunController < ApplicationController
     end
     
     def rank
-        
+        @user = User.all
     end
     
     def show

@@ -43,24 +43,28 @@ hr{
     font-size: 12px;
     color: gray;
 }
-
-.like{
-       border:none;
-       background:url(assets/like.png);
-       outline: none;
-       width: 28px;
-       height: 28px;
-    }
 .music {
     position: relative;
     margin-bottom: 5px;
     box-sizing: border-box;
     border-bottom: 1px solid #e3e3e3;
 }
+
+.btn {
+  background-color: #F55F4C;
+  border-color:#F55F4C;
+  color:white;
+  padding-bottom:7px;
+}
+.btn:hover {
+  color: #F55F4C;
+  background-color:rgba(232,93,75,0.1);
+}
+
 </style>
 
 <!--소메뉴 nav바-->
-<div class="container font mt-2">
+<div class="container font mt-2 d-flex justify-content-start">
     <div class="col-md-6" id="flex-style">
         <a class="navbar-brand option pb-0" href="/play"><a2>All</a2></a>
             <div class="dropdown">
@@ -75,8 +79,6 @@ hr{
         <a class="navbar-brand option pb-0" href="/play"><a2>Follow</a2></a>
         <a class="navbar-brand option pb-0" href="/play"><a2>A-Z</a2></a>
         
-        <a class="navbar-brand option pb-0" href="/plays/new">새 글 쓰기</a>
-        
         <div  class="customStyle">
             <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
             <input type="button" class="search2">
@@ -84,8 +86,15 @@ hr{
         </div>
         
     </div>
-    <hr class="mb-0"/>
+    
+    <div class="ml-auto">
+        <a href="/plays/new">
+            <button class="btn mr-5">새 글 쓰기</button>
+        </a>
+    </div>
 </div>
+
+<div class="container mt-2"><hr/></div>
 
 <!--list 메뉴-->
 <div class="container">
@@ -95,7 +104,6 @@ hr{
         <div class="col-8 text-center strong">list</div>
         <div class="col-1 text-center strong">genre</div>
         <div class="col-1 text-center strong">like</div>
-
     </div>
     <hr class="mt-0" />  
 </div>
@@ -107,7 +115,90 @@ hr{
 
 <div class="container">
     <% @play.each do |p| %>
-    <div class="row mr-0 ml-0 pl-0 music">
+        <style>
+            .wrapper<%= p.id %>{
+                width:auto;
+                margin:0;
+            }
+            
+            
+            
+            .defaultBar<%= p.id %>{
+                width:500px;
+                position:relative;
+                background-color:gray;
+                height:7px;
+                margin-top:10px;
+                margin-left:5px;
+            }
+            
+            .progressBar<%= p.id %>{
+                position:absolute;
+                height:7px;
+                background-color: #F55F4C;
+                width:0px;
+            }
+            
+            .progressCircle<%= p.id %>{
+                position:absolute;
+                border-radius: 100%;
+                width:15px;
+                height:15px;
+                background-color:#F55F4C;
+            }
+            
+            .playButton<%= p.id %>{
+                background:url(/assets/play.png);
+                border:none;
+                outline: none;
+                height:32px;
+                width:32px;
+                background-repeat:no-repeat;
+                background-position:center;
+                margin-right: 7px;
+            }
+            
+            .pauseButton<%= p.id %>{
+                background:url(/assets/stop.png);
+                outline: none;
+                border:none;
+                height:32px;
+                width:32px;
+                background-repeat:no-repeat;
+                background-position:center;
+                margin-right: 7px;
+            }
+            
+            
+            .muteButton<%= p.id %>:active,#playButton:active{
+                 position:relative;
+                 top:2px;
+            }
+            
+            .likeButton<%= p.id %>{
+                background:url(/assets/like.png);
+                outline: none;
+                border:none;
+                height:28px;
+                width:28px;
+                background-repeat:no-repeat;
+                background-position:center;
+                margin-right: 7px;
+            }
+            
+            .likedButton<%= p.id %>{
+                background:url(/assets/like2.png);
+                outline: none;
+                border:none;
+                height:28px;
+                width:28px;
+                background-repeat:no-repeat;
+                background-position:center;
+                margin-right: 7px;
+            }
+        </style>
+    
+    <div class="row mr-0 ml-0 pl-0 music<%= p.id %>">
         <div class="col-1 center"><%= p.id %></div>
         
         <div class="col-1 d-flex align-items-center"> 
@@ -121,16 +212,16 @@ hr{
         <div class="col-8 "> 
         <li><%= p.title %></li>
         <li>
-               <div class="wrapper row mr-0 mt-1 mb-1">
-                            <button class="playButton"></button>
-                            <button class="pauseButton" ></button>
-                        <div class="defaultBar d-flex  align-items-center mr-2 ml-3">
-                            <div class="progressBar"></div>
-                            <div class="progressCircle mb-5"></div>
+               <div class="wrapper<%= p.id %> row mr-0 mt-1 mb-1">
+                            <button class="playButton<%= p.id %>"></button>
+                            <button class="pauseButton<%= p.id %>" ></button>
+                        <div class="defaultBar<%= p.id %> d-flex  align-items-center mr-2 ml-3">
+                            <div class="progressBar<%= p.id %>"></div>
+                            <div class="progressCircle<%= p.id %> mb-5"></div>
                         </div>
                             <div class="row ml-3 mt">
-                            <span class="mr-1 currentTime">0:00</span> / 
-                            <span class="ml-1 fullDuration">0:00</span>
+                            <span class="mr-1 currentTime<%= p.id %>">0:00</span> / 
+                            <span class="ml-1 fullDuration<%= p.id %>">0:00</span>
                             </div>  
                 </div>
         </li>
@@ -142,11 +233,121 @@ hr{
         <div class="col-1 center"><%= p.genre %></div>
         
         <div class="col-1 center">
-            <button class="like"></button>
+            <p><%= p.play_likes.size %>명이 좋아합니다.</p>
+            <% if current_user.is_like?(p) %>
+                <a rel="nofollow" data-method="post" href="/plays/<%= p.id %>/playlike"><button class="likedButton<%= p.id %>"></button></a>
+            <% else %>
+                <a rel="nofollow" data-method="post" href="/plays/<%= p.id %>/playlike"><button class="likeButton<%= p.id %>"></button></a>
+            <% end %>
+            <!--<button class="likeButton<%= p.id %>"></button>-->
+            <!--<button class="likedButton<%= p.id %>"></button>-->
         </div>
     <hr/>
     </div>
-    <%end%>
+    <hr>
+     <script>
+                $(document).ready(function(){
+                
+                    container = $('.container');
+                	cover = $('.cover');
+                	play<%= p.id %> = $('.playButton<%= p.id %>');
+                	pause<%= p.id %> = $('.pauseButton<%= p.id %>');
+                	close = $('.close');
+                	song<%= p.id %> = new Audio("<%= p.songurl.url %>");
+                	duration<%= p.id %> = song<%= p.id %>.duration<%= p.id %>;
+                	like<%= p.id %> = $('.likeButton<%= p.id %>')
+                	liked<%= p.id %> = $('.likedButton<%= p.id %>')
+                	
+                	
+                	pause<%= p.id %>.hide();
+
+                	play<%= p.id %>.on('click', function(e){
+                	   
+                	    song<%= p.id %>.play();
+                	    play<%= p.id %>.hide();
+                	    pause<%= p.id %>.show();
+                	  
+                    });
+                    
+                    pause<%= p.id %>.on('click', function(e){
+                        
+                        song<%= p.id %>.pause();
+                       pause<%= p.id %>.hide();
+                       play<%= p.id %>.show();
+                    });
+                    
+                    like<%= p.id %>.on('click', function(e){
+                	    like<%= p.id %>.hide();
+                	    liked<%= p.id %>.show();
+                    });
+                    
+                    liked<%= p.id %>.on('click', function(e){
+                        liked<%= p.id %>.hide();
+                        like<%= p.id %>.show();
+                    });
+                    
+                    duration<%= p.id %> = $('.fullDuration<%= p.id %>');
+                    currentTime<%= p.id %> = $('.currentTime<%= p.id %>');
+                   
+                    
+                    var barSize<%= p.id %> = 500;
+                    var bar<%= p.id %> = $('.defaultBar<%= p.id %>');
+                    var progressBar<%= p.id %> = $('.progressBar<%= p.id %>')
+                    var progressCircle<%= p.id %> = $('.progressCircle<%= p.id %>')
+                    
+                    
+                    
+                    //Time/Duration
+            
+                	$(song<%= p.id %>).on('timeupdate',function(){
+                		//Get hours and minutes
+                		var s<%= p.id %> = parseInt(song<%= p.id %>.currentTime % 60);
+                		var m<%= p.id %> = parseInt(song<%= p.id %>.currentTime / 60) % 60;
+                		var min<%= p.id %> = parseInt(song<%= p.id %>.duration / 60);
+                        var sce<%= p.id %> = parseInt(song<%= p.id %>.duration % 60);
+                        duration<%= p.id %>.html(min<%= p.id %> + ':' + sce<%= p.id %>);
+                    
+                        if(!song<%= p.id %>.ended){
+                    		if(s<%= p.id %> < 10){
+                    			s<%= p.id %> = '0'+s<%= p.id %>;
+                    		}
+                    		currentTime<%= p.id %>.html(m<%= p.id %> + ':'+ s<%= p.id %>);
+                    		
+                    		var value<%= p.id %> = 0;
+                    		if(song<%= p.id %>.currentTime > 0){
+                    			value<%= p.id %> = Math.floor((100 / song<%= p.id %>.duration) * song<%= p.id %>.currentTime);
+                    		}
+                    		
+                    		
+                    		var size<%= p.id %> = parseInt((song<%= p.id %>.currentTime*barSize<%= p.id %>)/(song<%= p.id %>.duration));
+                    
+                    		
+                    	    progressBar<%= p.id %>.css('width',size<%= p.id %>+'px');
+                    	    progressCircle<%= p.id %>.animate({left:(size<%= p.id %>-1)+'px' ,}, 5);
+                        }
+                        else{
+                            currentTime<%= p.id %>.html("0:00");
+                            playButton<%= p.id %>.css("backgroundImage" ,'background-image:url(/assets/play.png)');
+                        
+                            progressBar<%= p.id %>.css( "width" , "0px");
+                        }
+                		
+                	});
+                	
+                	
+                	bar<%= p.id %>.click( function( event ) {
+                	        
+                            var mouseX<%= p.id %> =  event.pageX - bar<%= p.id %>.offset().left;
+                            var newtime<%= p.id %> = Math.floor(mouseX<%= p.id %>*song<%= p.id %>.duration/barSize<%= p.id %>);
+                            
+                            song<%= p.id %>.currentTime = newtime<%= p.id %>;
+                           
+                    });
+            
+                });
+        </script>
+    
+    <% end %>
 </div>
 </div>
 
@@ -156,6 +357,5 @@ hr{
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="/assets/player.js"></script>
 <link rel="stylesheet" href="/assets/player.scss"/>
 

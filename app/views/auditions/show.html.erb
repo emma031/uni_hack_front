@@ -55,60 +55,97 @@ a:click{
 }
 </style>
 
-<div class="container mt-5">
-  <div class="row">
-    <img class="small rounded mr-2" src="<%= @audition.user.avatar.url %>">
-    <div>
-      <span class="name"><%= @audition.user.name %></span> <br/>
-      <!--<#%if time_ago(@audition.created_at) <   %>     
-      //글 작성한지 하루가 지나면 그냥 언제 작성했다고 뜨게 하고싶은데 ㅠㅠ 어케하면 조을까유--> 
-      <span class="time"><%="#{time_ago_in_words(@audition.created_at)}전"%></span>
-      <!--<#%else%>-->
-      <!--<span class="time"><%="#{(@audition.created_at.to_date)}"%></span>-->
-      <!--<#%end%>-->
+<div class="container">
+  <div class="container mt-5">
+    <div class="row">
+      <img class="small rounded mr-2" src="<%= @audition.user.avatar.url %>">
+      <div>
+        <span class="name"><%= @audition.user.name %></span> <br/>
+        <% if @audition.created_at %>     
+        <span class="time"><%="#{time_ago_in_words(@audition.created_at)}전"%></span>
+        <% else %>
+        <span class="time"><%="#{(@audition.created_at.to_date)}"%></span>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
-
-
-
-<div class="container">
-  <p id="notice"><%= notice %></p>
-</div>
-
-<div class="container">
-  <p class="title">
-    <%= @audition.title %>
-  </p>
-</div>
-
-<div class="container">
-  <p class="content">
-    <%= simple_format( @audition.content) %>
-  </p>
-</div>
-
-<div class="container d-flex justify-content-end align-items-center">
-  <div class="mr-auto time"> 조회수: <%= "#{@audition.unique_impression_count}"%>
+  
+  
+  
+  <div class="container">
+    <p id="notice"><%= notice %></p>
   </div>
   
-  <div></div>
-  <span class="mx-1 a">
-    <a href="/audition">목록으로</a>
-  <% if current_user.id == @audition.user.id %>
-  </span>
-  <span class="mx-1">|</span>
-  <span class="mx-1">
-    <%= link_to '삭제', audition_path(@audition), method: 'delete' %>
-  </span> 
-  <span class="mx-1">|</span>
-  <%= link_to '수정', edit_audition_path(@audition) %>
-  <% end %>
+  <div class="container">
+    <p class="title">
+      <%= @audition.title %>
+    </p>
+  </div>
+  
+  <div class="container">
+    <p class="content">
+      <%= simple_format( @audition.content) %>
+    </p>
+  </div>
+  
+  <div class="container d-flex justify-content-end align-items-center">
+    <div class="mr-auto time"> 조회수: <%= "#{@audition.unique_impression_count}"%></div>
+    
+    <span class="mx-1 a">
+      <a href="/audition">목록으로</a>
+    <% if current_user.id == @audition.user.id %>
+    </span>
+    <span class="mx-1">|</span>
+    <span class="mx-1">
+      <%= link_to '삭제', audition_path(@audition), method: 'delete' %>
+    </span> 
+    <span class="mx-1">|</span>
+    <%= link_to '수정', edit_audition_path(@audition) %>
+    <% end %>
+  </div>
+  
+  <hr>
+  <!-- 오디션 페이지 댓글 -->
+  <div>
+    <div id="reply_list_<%= @audition.id %>">
+      <% @audition.audition_comments.each do |c| %>
+          <strong style="display:inline; font-size:17px"><%= c.user.name %></strong> &nbsp;&nbsp;
+          <h5 style="display:inline; color:grey"><%= "#{time_ago_in_words(c.created_at)} 전" %>&nbsp;&nbsp;
+          <% if current_user.name == c.user.name %>
+            <%= link_to "삭제", audition_audition_comment_path(@audition, c), method: "delete" %>
+          <% end %>
+          </h5> 
+          <h5> <%= c.content %>   </h5>
+          <hr style="margin-top:10px; margin-bottom:10px">
+      <% end %>
+    </div>
+    
+    <div class="form_group">            
+    <%= form_tag audition_audition_comments_path(@audition) do %>
+      <textarea name="content" class="form-control comment" rows="2" id="comment_<%= @audition.id %>"></textarea>
+      <%#= text_area_tag :content, nil, placeholder: "댓글을 작성해주세요.", required: true, id: "comment_#{@audition.id}" %>
+      <button value="<%= @audition.id %>" type="submit" class="btn comment_submit">댓글 달기</button>
+      <%#= button_tag "댓글 쓰기", value: @audition.id  ,class: "btn" %>
+    <% end %>
+    </div>
+
   </div>
 </div>
 
-
-
-
-
-
+  <!-- ajax 아직 안됨 -->
+    <script>
+    $(".comment_submit").click(function(){
+          post_id = this.value;
+          reply_content = $("#comment_"+post_id).val();
+                  alert('테스트1');
+          $.ajax({
+                method: "POST",
+                url: "/auditions/<%= @audition.id %>/audition_comments",
+                data: {content: reply_content , audition_id: post_id }
+              })
+              .done(function(msg){
+                  alert('높이 : '+ $("#reply_list_"+post_id).height());
+                  $("#reply_list_"+post_id).load(location.href + "#reply_list_"+post_id);
+              });
+          });
+    </script>

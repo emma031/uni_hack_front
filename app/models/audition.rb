@@ -1,6 +1,6 @@
 class Audition < ActiveRecord::Base
     belongs_to :user
-    
+    has_many :audition_comments
     has_many :impressions, :as=>:impressionable
     
       def impression_count

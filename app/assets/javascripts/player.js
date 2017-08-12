@@ -4,14 +4,15 @@ $(document).ready(function(){
         	cover = $('.cover');
         	play = $('.playButton');
         	pause = $('.pauseButton');
-        	mute = $('.muteButton');
-        	muted = $('.notMute');
         	close = $('.close');
         	song = new Audio("http://d2cmk1i3pr55ur.cloudfront.net/song.mp3");
         	duration = song.duration;
+        	like = $('.likeButton')
+        	liked = $('.likedButton')
+        	
         	
         	pause.hide();
-        	muted.hide();
+        	liked.hide();
         	
         	play.on('click', function(e){
         	   
@@ -28,18 +29,14 @@ $(document).ready(function(){
                play.show();
             });
             
-            mute.on('click', function(e){
-        	   
-        	    song.volume = 0;
-        	    mute.hide();
-        	    muted.show();
+            like.on('click', function(e){
+        	    like.hide();
+        	    liked.show();
             });
             
-            muted.on('click', function(e){
-        	   
-        	    song.volume = 1;
-                muted.hide();
-                mute.show();
+            liked.on('click', function(e){
+                liked.hide();
+                like.show();
             });
             
             duration = $('.fullDuration');
