@@ -1,10 +1,25 @@
-<h1>New Play</h1>
+<style>
+    h2{
+  color: #F55F4C;
+  margin:0;
+    }
+</style>
+
+
+<div class="container mt-4 mb-4">
+    <h2 class="font-weight-bold">New Play</h2>
+</div>
 
 <%= render 'form' %>
 
 <a href="/play">Back</a>
 
 
+
+
+
+
+<!--음악파일첨부-->
 <script>
   function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object

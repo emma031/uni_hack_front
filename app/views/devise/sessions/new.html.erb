@@ -1,5 +1,19 @@
 <style>
   
+
+
+.container2{
+  width:500px;
+  height:auto;
+  margin-left:550px;
+}
+
+input{
+    background-color:white;
+    outline: none;
+    border: solid 1px rgba(232,93,75,0.5);
+    border-radius: 10px;
+}
 .mt{
   margin-top: 30px;
 }
@@ -13,14 +27,6 @@ a:hover {
      color:#c1200b;
 }
 
-input{
-  background-color: rgba(232,93,75,0.25);
-      outline-offset: 0px;
-      border-color: white;
-      border-width: 2px;
-    border-style: none;
-    border-image: none;
-}
 
 h6{
   margin-top:4px;
@@ -30,8 +36,8 @@ h6{
 .btn {
   background-color: white;
   border-color: gray;
-  padding-top: 45px;
-  padding-bottom: 45px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 .btn:hover {
   color: #F55F4C;
@@ -42,15 +48,19 @@ h6{
   margin-top: 48px;
   padding-left:40px
 }
+
+.s{
+  width:500px;
+}
 </style>
 
-<div class="container mt-5 ">
+<div class="container2 mt-5">
   <h2 class="font-weight-bold maincolor">Log in</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
-<div class="row">
-<div class="col-2">
-      <div class="field mt ">
+   
+<div class="row s d-flex align-items-center">
+<div class="col-5">
+  <div class="field mt ">
     <h6> 이메일을 입력하세요: </h6>
     <%= f.email_field :email, autofocus: true %>
   </div>
@@ -62,8 +72,8 @@ h6{
   </div>
 </div>
 
-<div class="col-1">
-<button class="btn" type="submit">Login</button>
+<div class="col-4">
+<button class="btn mt-4" type="submit">Login</button>
 </div>
 </div>
 
@@ -78,5 +88,5 @@ h6{
 
 <% end %>
 
-<%= render "devise/shared/links" %>
+<a href="/users/sign_up">Sign up</a>
 </div>

@@ -12,4 +12,7 @@ class Audition < ActiveRecord::Base
        # so getting keys from the hash and calculating the number of keys
        impressions.group(:ip_address).size.keys.length #TESTED
       end
+    
+    paginates_per 8
+
 end

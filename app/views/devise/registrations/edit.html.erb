@@ -1,8 +1,103 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<style>
+  
+  .container2{
+  /*background-color: #f7f7f7;*/
+  background-color:rgba(232,93,75,0.05);
+  border-left: solid #f55f4c 20px;
+  border-right: solid #f55f4c 20px;
+  width:600px;
+  height:auto;
+  margin-left:400px;
+  margin-right:400px;
+}
+  
+.mt{
+  margin-top: 30px;
+}
+
+.a {
+  color: #F55F4C;
+  text-decoration: none;
+}
+
+.a:hover {
+     color:#c1200b;
+}
+.field_with_errors {
+    padding: 2px;
+    background-color: none;
+    display: table;
+    color:  #F55F4C;
+}
+input{
+    background-color:white;
+    outline: none;
+    border: solid 1px rgba(232,93,75,0.5);
+    border-radius: 10px;
+}
+#error_explanation ul li {
+    font-size: 12px;
+    list-style: none;
+}
+h2{
+  color: #F55F4C;
+}
+
+option:hover {
+  background-color: rgba(232,93,75,0.15);
+}
+h6{
+  margin-top:4px;
+  margin-bottom:4px;
+  margin-right:4px;
+  text-align: center;
+}
+
+w{
+  font-size:12px;
+  color: gray;
+}
+
+contain{
+  width: 400px;
+  height: auto;
+      align-items: center;
+}
+
+a:not([href]):not([tabindex]) {
+    color: #F55F4C;
+    text-decoration: none;
+}
+
+.file{
+  background:none;
+    outline: none;
+    border-color: none;
+    border-width: 0;
+    border-style: none;
+}
+.btn {
+  background-color: #F55F4C;
+  border-color:#F55F4C;
+  color:white;
+  padding-bottom:7px;
+}
+
+.btn:hover {
+  color: #F55F4C;
+  background-color:rgba(232,93,75,0.1);
+}
+</style>
+
+
+<div class="container2 d-flex justify-content-center">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-
+  <div>
+  <h2 class="mt font-weight-bold">Edit <%= resource_name.to_s.humanize %></h2>
+  </div>
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -63,12 +158,16 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update" ,class:'btn'%>
   </div>
-<% end %>
 
+<div>
 <h3>Cancel my account</h3>
+
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+</div>
+<% end %>
+</div>

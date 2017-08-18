@@ -143,6 +143,11 @@
       color:black;
       font-size : 16px;
     }
+    
+    div.col-5 a.active {
+    color: #F55F4C;
+}
+    
     a2:hover { 
       color: #F55F4C;
       font-size:17px;
@@ -180,7 +185,7 @@
     
     .ac{
      color: #F55F4C;
-     font-size : 22px;
+     font-size: 22px;
     }
   </style>
 
@@ -200,10 +205,10 @@
               </div>
               
               <div class="col-5 pl-5" id="flex-style">
-                <a class="navbar-brand " href="/show"><a1 class>Show</a1></a>
-                <a class="navbar-brand " href="/play"><a1>Play</a1></a>
-                <a class="navbar-brand " href="/audition"><a1>Audition</a1></a>
-                <a class="navbar-brand " href="/rank"><a1>Rank</a1></a>
+                <a class="navbar-brand tabname" href="/show"><a1 class>Show</a1></a>
+                <a class="navbar-brand tabname" href="/play"><a1>Play</a1></a>
+                <a class="navbar-brand tabname" href="/audition"><a1>Audition</a1></a>
+                <a class="navbar-brand tabname" href="/rank"><a1>Rank</a1></a>
               </div>
               
               <div  class="customStyle cod-3">
@@ -216,6 +221,7 @@
               <% if user_signed_in? %>
                   <a class="navbar-brand" href="/users/edit"><a1><%= current_user.name %></a1></a>
                   <a class="navbar-brand" href="/users/sign_out" data-method="delete"><a1>Log out</a1></a>
+                  <a clsss="navbar-brand" href="/mypage"><a1>My Page</a1></a>
               <% else %>    
                   <a class="navbar-brand"  href="/users/sign_in"><a1>Log in</a1></a>
                   <a class="navbar-brand"  href="/users/sign_up"><a1>Sign in</a1></a>
@@ -232,20 +238,22 @@
 
 
   <%= yield %>
+  
+
+  
   </body>
   
-   
+   <script>
+     function sustain(evt, name){
+       var i, tabname;
+       tabname=document.getElementsByClassName("tabname");
+       for(i=0; i<tabname.length; i++){
+         tabname[i].className=tabname[i].className.replace("active", " ");
+       }
+      evt.currentTarget.className += " active";
+       
+     }
+   </script>
     
 </html>
-
-
- <script>
-  
-  $(document).ready(function(){
-    $('a1').click(function() {
-        $('a1').removeClass('ac');
-        $(this).addClass('ac');
-    });
-});
-</script>
 

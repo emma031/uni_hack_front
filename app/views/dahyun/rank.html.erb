@@ -58,7 +58,7 @@ background-color: rgba(232,93,75,0.25);
         <div class="col-2 text-center strong pl-0">genre</div>
         <div class="col-1 text-center strong pl-0">score</div>
         <div class="col-1 text-center strong pl-0">like</div>
-        <div class="col-1 text-center strong pl-0">follow</div>
+        <div class="col-2 text-center strong pl-0">follow</div>
         <div class="col-1 text-center strong pl-0">scout</div>
     </div>
     <hr class="mt-0 ml-0 pl-0 pr-0 mr-0" />  
@@ -75,7 +75,15 @@ background-color: rgba(232,93,75,0.25);
                 <div class="col-2 text-center "><%= u.genre %></div>
                 <div class="col-1 text-center ">보류</div>
                 <div class="col-1 text-center" type="button">조아요</div>
-                <div class="col-1 text-center" type="button">팔로</div>
+                <div class="col-2 text-center">
+                    <% if user_signed_in? && current_user != u %>
+                      <% if current_user.followings.include?(u) %>
+                          <button class="follow_cancel" value="<%= u.id %>">팔로우 취소</button>
+                      <% else %>
+                          <button class="follow" value="<%= u.id %>">팔로우</button>
+                      <% end %>
+                    <% end %>
+                </div>
                 <div class="col-1 text-center" type="button">스카웃</div>
             </div>
             <hr/>
@@ -95,3 +103,34 @@ background-color: rgba(232,93,75,0.25);
     
 </div>
 
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script>
+    $(".follow").click(function(){
+          var followed_id = this.value;
+          $.ajax({
+                method: "post",
+                url: "/follows",
+                data: {followed_id: followed_id}
+          })
+          .done(function(msg){
+              //  alert('높이 : '+ $("#showreply_list_"+post_id).height());
+            //    $("#showreply_list_"+post_id).load(location.href + "#showreply_list_"+post_id);
+          });
+    });
+    
+    $(".follow_cancel").click(function(){
+          var followed_id = this.value;
+          $.ajax({
+                method: "post",
+                url: "/follow/destroy",
+                data: {id: followed_id}
+          })
+          .done(function(msg){
+              //  alert('높이 : '+ $("#showreply_list_"+post_id).height());
+            //    $("#showreply_list_"+post_id).load(location.href + "#showreply_list_"+post_id);
+          });
+    });
+</script>

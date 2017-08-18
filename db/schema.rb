@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812033120) do
+ActiveRecord::Schema.define(version: 20170818061906) do
 
   create_table "audition_comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20170812033120) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "follows", ["followed_id"], name: "index_follows_on_followed_id"
+  add_index "follows", ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
+  add_index "follows", ["follower_id"], name: "index_follows_on_follower_id"
 
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
@@ -67,16 +78,26 @@ ActiveRecord::Schema.define(version: 20170812033120) do
     t.string   "title"
     t.string   "group"
     t.string   "genre"
+    t.string   "songurl"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "image"
-    t.string   "songurl"
+  end
+
+  create_table "show_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "show_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "shows", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
+    t.string   "group"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -54,6 +54,7 @@ a:click{
   color:#c1200b;
 }
 </style>
+<body onLoad="scrollMove(0, 1000)"> 
 
 <div class="container">
   <div class="container mt-5">
@@ -107,7 +108,7 @@ a:click{
   <hr>
   <!-- 오디션 페이지 댓글 -->
   <div>
-    <div id="reply_list_<%= @audition.id %>">
+    <div id="auditionreply_list_<%= @audition.id %>">
       <% @audition.audition_comments.each do |c| %>
           <strong style="display:inline; font-size:17px"><%= c.user.name %></strong> &nbsp;&nbsp;
           <h5 style="display:inline; color:grey"><%= "#{time_ago_in_words(c.created_at)} 전" %>&nbsp;&nbsp;
@@ -120,32 +121,42 @@ a:click{
       <% end %>
     </div>
     
-    <div class="form_group">            
-    <%= form_tag audition_audition_comments_path(@audition) do %>
-      <textarea name="content" class="form-control comment" rows="2" id="comment_<%= @audition.id %>"></textarea>
+    <div class="form_group iknow" >            
+    <%#= form_tag audition_audition_comments_path(@audition) do %>
+      <textarea name="content" class="form-control comment" rows="2" id="auditioncomment_<%= @audition.id %>"></textarea>
       <%#= text_area_tag :content, nil, placeholder: "댓글을 작성해주세요.", required: true, id: "comment_#{@audition.id}" %>
-      <button value="<%= @audition.id %>" type="submit" class="btn comment_submit">댓글 달기</button>
+      <button value="<%= @audition.id %>" type="submit" class="auditioncomment_submit">댓글 달기</button>
       <%#= button_tag "댓글 쓰기", value: @audition.id  ,class: "btn" %>
-    <% end %>
+    <%# end %>
     </div>
-
   </div>
 </div>
 
-  <!-- ajax 아직 안됨 -->
+
+    <!-- 댓글 ajax 작업 -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <!-- ajax 아직 안됨 -->
     <script>
-    $(".comment_submit").click(function(){
+
+    
+    $(".auditioncomment_submit").click(function(){
           post_id = this.value;
-          reply_content = $("#comment_"+post_id).val();
-                  alert('테스트1');
+          reply_content = $("#auditioncomment_"+post_id).val();
           $.ajax({
                 method: "POST",
                 url: "/auditions/<%= @audition.id %>/audition_comments",
                 data: {content: reply_content , audition_id: post_id }
               })
               .done(function(msg){
-                  alert('높이 : '+ $("#reply_list_"+post_id).height());
-                  $("#reply_list_"+post_id).load(location.href + "#reply_list_"+post_id);
+              
+                  
+                                  
+                  //$("#auditionreply_list_"+post_id).load(location.href+("#auditionreply_list_"+post_id));
+
               });
-          });
+
     </script>
+</body>
+

@@ -1,6 +1,13 @@
 class ShowsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_show, only: [:show, :edit, :update, :destroy]
-
+  before_action :log_impression, only: [:show]
+ 
+  def log_impression
+      @hit_post = Show.find(params[:id])
+      # this assumes you have a current_user method in your authentication system
+      @hit_post.impressions.create(ip_address: request.remote_ip,user_id:current_user.id)
+  end
   # GET /shows
   # GET /shows.json
   def index
@@ -25,7 +32,7 @@ class ShowsController < ApplicationController
   # POST /shows.json
   def create
     @show = Show.new(show_params)
-
+    @show.user_id = current_user.id
     respond_to do |format|
       if @show.save
         format.html { redirect_to @show, notice: 'Show was successfully created.' }
@@ -56,7 +63,7 @@ class ShowsController < ApplicationController
   def destroy
     @show.destroy
     respond_to do |format|
-      format.html { redirect_to shows_url, notice: 'Show was successfully destroyed.' }
+      format.html { redirect_to "/show", notice: 'Show was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +76,6 @@ class ShowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def show_params
-      params.require(:show).permit(:title, :content)
+      params.require(:show).permit(:title, :content, :group )
     end
 end

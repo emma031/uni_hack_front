@@ -5,7 +5,7 @@ class PlaysController < ApplicationController
   # GET /plays
   # GET /plays.json
   def index
-    @plays = Play.all
+    @plays = Play.order("created_at DESC").paginate(:page => params[:page], :per_page=>8)
   end
 
   # GET /plays/1

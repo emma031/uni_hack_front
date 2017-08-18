@@ -14,6 +14,7 @@ input{
 textarea{
   resize: none;
   font-size:16px;
+  outline: none;
 }
 
 .write {
@@ -43,6 +44,9 @@ formm.write p {
     background-color: #fff;
 }
 
+.out{
+  outline:none;
+}
 
 .submit:hover{
   color: #F55F4C;
@@ -69,7 +73,7 @@ formm.write p {
 <div class="container">
   <formm class="write mb-0">
     <p class="title">
-      <input type="text" placeholder="제목을 입력하세요" name="audition[title]" id="audition[content]">
+      <input class="out" type="text" placeholder="제목을 입력하세요" name="audition[title]" id="audition[content]">
     </p>
     <p class="content">
       <textarea name="audition[content]" placeholder="내용을 작성하세요" id="audition_content"></textarea>

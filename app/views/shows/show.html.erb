@@ -10,5 +10,76 @@
   <%= @show.content %>
 </p>
 
-<%= link_to 'Edit', edit_show_path(@show) %> |
-<%= link_to 'Back', shows_path %>
+<p>
+  <strong>Group:</strong>
+  <%= @show.group %>
+</p>
+
+<p>
+  <strong>작성자:</strong>
+  <%= @show.user.name %>
+</p>
+
+<% if @show.created_at %>     
+    <span class="time"><%="#{time_ago_in_words(@show.created_at)}전"%></span>
+<% else %>
+    <span class="time"><%="#{(@show.created_at.to_date)}"%></span>
+<% end %>
+<br>
+<hr>
+<div class="mr-auto time"> 조회수: <%= "#{@show.unique_impression_count}"%></div>
+
+<%= link_to '목록으로', "/show" %>
+<% if current_user.id == @show.user.id %>
+|
+<%= link_to '수정', edit_show_path(@show) %> |
+<%= link_to '삭제', show_path(@show), method: "delete" %>
+<% end %>
+<br><hr>
+<!-- 쇼 페이지 댓글 -->
+    <div id="showreply_list_<%= @show.id %>">
+      <% @show.show_comments.each do |c| %>
+          <strong style="display:inline; font-size:17px"><%= c.user.name %></strong> &nbsp;&nbsp;
+          <h5 style="display:inline; color:grey"><%= "#{time_ago_in_words(c.created_at)} 전" %>&nbsp;&nbsp;
+          <% if current_user.name == c.user.name %>
+            <%= link_to "삭제", show_show_comment_path(@show, c), method: "delete" %>
+          <% end %>
+          </h5> 
+          <h5> <%= c.content %>   </h5>
+          <hr style="margin-top:10px; margin-bottom:10px">
+          <% end %>
+    </div>
+    
+    <div class="form_group">            
+    <%#= form_tag show_show_comments_path(@show) do %>
+      <textarea name="content" class="form-control comment" rows="2" id="showcomment_<%= @show.id %>"></textarea>
+      <%#= text_area_tag :content, nil, placeholder: "댓글을 작성해주세요.", required: true, id: "comment_#{@show.id}" %>
+      <button value="<%= @show.id %>" type="submit" class="btn" id="showcomment_submit">댓글 달기</button>
+      <%#= button_tag "댓글 쓰기", value: @show.id  ,class: "btn" %>
+    <%# end %>
+    </div>
+
+    <!-- 댓글 ajax 작업 -->
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+        
+<script>
+
+    $("#showcomment_submit").click(function(){
+          var post_id = this.value;
+          var reply_content = $("#showcomment_<%= @show.id %>").val();
+          $.ajax({
+                method: "post",
+                url: "/shows/<%= @show.id %>/show_comments",
+                data: {content: reply_content, show_id: <%= @show.id %>}
+          })
+          .done(function(msg){
+                alert('높이 : '+ $("#showreply_list_"+post_id).height());
+                $("#showreply_list_"+post_id).load(location.href + "#showreply_list_"+post_id);
+
+          });
+    });
+
+    </script>

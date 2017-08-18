@@ -1,3 +1,67 @@
+<style>
+input, textarea{
+  font-family: 'Jeju Gothic', sans-serif;
+  border:0;
+  width: 100%;
+  height: 100%;
+  padding:3px;
+}
+
+input{
+  font-size: 19px;
+}
+
+textarea{
+  resize: none;
+  font-size:16px;
+  outline: none;
+}
+
+.write {
+    position: relative;
+    margin-bottom: 5px;
+    border: 2px solid #d6d6d6;
+    box-sizing: border-box;
+}
+
+formm{
+    display: block;
+}
+
+p.title{
+  margin:0;
+  height:50px;
+}
+
+p.content{
+  margin:0;
+  height: 300px;
+}
+
+formm.write p {
+    padding: 12px;
+    border-bottom: 1px solid #e3e3e3;
+    background-color: #fff;
+}
+
+.out{
+  outline:none;
+}
+
+.submit:hover{
+  color: #F55F4C;
+  background-color:rgba(232,93,75,0.1);
+}
+
+.group{
+  margin:0;
+}
+</style>
+
+
+
+
+
 <%= form_for(@show) do |f| %>
   <% if @show.errors.any? %>
     <div id="error_explanation">
@@ -11,15 +75,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="container">
+  <formm class="write mb-0">
+    <p class="title">
+      <input class="out" type="text" placeholder="제목을 입력하세요" name="show[title]" id="show[content]">
+    </p>
+    <p class="content">
+      <textarea name="show[content]" placeholder="내용을 작성하세요" id="show_content"></textarea>
+    </p>
+    <p class="group">
+       <%= f.label :group %>
+     <select name="show[group]" id="show_group">
+        <option value="작사가">작사가</option>
+        <option value="작곡가">작곡가</option>
+        <option value="가수">가수</option>
+    </select>  
+    </p>
+  </formm>
+    <input class="submit" type="submit" value="submit">
   </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+
+
+
 <% end %>

@@ -20,8 +20,6 @@ background-color: rgba(232,93,75,0.25);
     text-align:center;
     margin-top:10px;
 }
-
-
 .col-8{
     margin:0;
 }
@@ -66,18 +64,18 @@ hr{
 <!--소메뉴 nav바-->
 <div class="container font mt-2 d-flex justify-content-start">
     <div class="col-md-6" id="flex-style">
-        <a class="navbar-brand option pb-0" href="/play"><a2>All</a2></a>
+        <a class="navbar-brand pb-0" href="/play"><a2>All</a2></a>
             <div class="dropdown">
-                <a class="navbar-brand dropdown-toggle mr-3 pb-0 font option" href="/play" data-toggle="dropdown" aria-haspopup="true"><a2>Genre</a2> </a>
+                <a class="navbar-brand dropdown-toggle mr-3 pb-0 font" href="/play" data-toggle="dropdown" aria-haspopup="true"><a2>Genre</a2> </a>
                     <div class="dropdown-menu "  aria-labelledby="dropdownMenu2">
                         <ul class="d"><a href = "/play"><a2>a</a2></a></ul>
                         <ul class="d"><a href = "/play"><a2>b</a2></a></ul>
                         <ul class="d"><a href = "/play"><a2>c</a2></a></ul>
                     </div>
             </div>
-        <a class="navbar-brand option pb-0" href="/play"><a2>Like</a2></a>
-        <a class="navbar-brand option pb-0" href="/play"><a2>Follow</a2></a>
-        <a class="navbar-brand option pb-0" href="/play"><a2>A-Z</a2></a>
+        <a class="navbar-brand pb-0" href="/play"><a2>Like</a2></a>
+        <a class="navbar-brand pb-0" href="/play"><a2>Follow</a2></a>
+        <a class="navbar-bran pb-0" href="/play"><a2>A-Z</a2></a>
         
         <div  class="customStyle">
             <input type="search" name="search" class="custom-search form-control" placeholder = " search" />
@@ -98,7 +96,7 @@ hr{
 
 <!--list 메뉴-->
 <div class="container">
-    <div class="row mr-0 ml-0 pl-0 pb-3 pt-3 back">
+    <div class="row mr-0 ml-0 pl-0 pb-2 pt-2 back">
         <div class="col-1 text-center strong">#</div>
         <div class="col-1 text-center strong"></div>
         <div class="col-8 text-center strong">list</div>
@@ -114,7 +112,7 @@ hr{
 <!--list-->
 
 <div class="container">
-    <% @play.each do |p| %>
+    <% @plays.each do |p| %>
         <style>
             .wrapper<%= p.id %>{
                 width:auto;
@@ -209,7 +207,7 @@ hr{
             <% end %>            
         </div>
         
-        <div class="col-8 "> 
+        <div class="col-8" id="like_<%= p.id %>"> 
         <li><%= p.title %></li>
         <li>
                <div class="wrapper<%= p.id %> row mr-0 mt-1 mb-1">
@@ -235,9 +233,11 @@ hr{
         <div class="col-1 center">
             <p><%= p.play_likes.size %>명이 좋아합니다.</p>
             <% if current_user.is_like?(p) %>
-                <a rel="nofollow" data-method="post" href="/plays/<%= p.id %>/playlike"><button class="likedButton<%= p.id %>"></button></a>
+                <!--<a rel="nofollow" data-method="post" href="/plays/<%= p.id %>/playlike"></a>-->
+                <button id="likeB" value="<%= p.id %>" class="likedButton<%= p.id %>"></button>
             <% else %>
-                <a rel="nofollow" data-method="post" href="/plays/<%= p.id %>/playlike"><button class="likeButton<%= p.id %>"></button></a>
+                <!--<a rel="nofollow" data-method="post" href="/plays/<%= p.id %>/playlike"></a>-->
+                <button id="likeB" value="<%= p.id %>" class="likeButton<%= p.id %>"></button>
             <% end %>
             <!--<button class="likeButton<%= p.id %>"></button>-->
             <!--<button class="likedButton<%= p.id %>"></button>-->
@@ -247,6 +247,7 @@ hr{
     <hr>
      <script>
                 $(document).ready(function(){
+  
                 
                     container = $('.container');
                 	cover = $('.cover');
@@ -279,11 +280,31 @@ hr{
                     like<%= p.id %>.on('click', function(e){
                 	    like<%= p.id %>.hide();
                 	    liked<%= p.id %>.show();
+                	    var post_id = this.value;
+                        $.ajax({
+                            method: "post",
+                            url: "/playlike",
+                            data: {play_id: post_id}
+                        })
+                        .done(function(msg){
+                            alert($("#like_"+post_id).height());
+                            $("#like_"+post_id).load(location.href + "#like_"+post_id);
+                        });
                     });
                     
                     liked<%= p.id %>.on('click', function(e){
                         liked<%= p.id %>.hide();
                         like<%= p.id %>.show();
+                        var post_id = this.value;
+                        $.ajax({
+                            method: "post",
+                            url: "/playlike",
+                            data: {play_id: post_id}
+                        })
+                        .done(function(msg){
+                            alert($("#like_"+post_id).height());
+                            $("#like_"+post_id).load(location.href + "#like_"+post_id);
+                        });
                     });
                     
                     duration<%= p.id %> = $('.fullDuration<%= p.id %>');
@@ -350,7 +371,7 @@ hr{
     <% end %>
 </div>
 </div>
-
+<%#= paginate @plays%>
 
 <!-- 여기 연결 소스 -->
 
@@ -358,4 +379,3 @@ hr{
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/assets/player.scss"/>
-

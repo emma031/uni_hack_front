@@ -5,4 +5,5 @@ class Play < ActiveRecord::Base
     
     mount_uploader :image, PlayImageUploader
     mount_uploader :songurl, SongurlUploader
+    paginates_per 8
 end

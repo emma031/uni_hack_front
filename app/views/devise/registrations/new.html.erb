@@ -1,4 +1,15 @@
 <style>
+
+.container2{
+  /*background-color: #f7f7f7;*/
+  background-color:rgba(232,93,75,0.05);
+  border-left: solid #f55f4c 20px;
+  border-right: solid #f55f4c 20px;
+  width:600px;
+  height:auto;
+  margin-left:400px;
+  margin-right:400px;
+}
   
 .mt{
   margin-top: 30px;
@@ -19,12 +30,10 @@
     color:  #F55F4C;
 }
 input{
-  background-color: rgba(232,93,75,0.15);
-      outline: none;
-      border-color: white;
-      border-width: 2px;
-    border-style: none;
-    border-image: none;
+    background-color:white;
+    outline: none;
+    border: solid 1px rgba(232,93,75,0.5);
+    border-radius: 10px;
 }
 #error_explanation ul li {
     font-size: 12px;
@@ -33,6 +42,7 @@ input{
 h2{
   color: #F55F4C;
 }
+
 option:hover {
   background-color: rgba(232,93,75,0.15);
 }
@@ -54,45 +64,68 @@ contain{
       align-items: center;
 }
 
-[type=submit]{
-  -webkit-appearance: none;
+.file{
+  background:none;
+    outline: none;
+    border-color: none;
+    border-width: 0;
+    border-style: none;
 }
-a:not([href]):not([tabindex]) {
-    color: #F55F4C;
-    text-decoration: none;
+.btn {
+  background-color: #F55F4C;
+  border-color:#F55F4C;
+  color:white;
+  padding-bottom:7px;
 }
 
+.btn:hover {
+  color: #F55F4C;
+  background-color:rgba(232,93,75,0.1);
+}
 
 
 </style>
 
 
 
-<div class="container mt-5 ">
-<h2 class="font-weight-bold">Sign up</h2>
+<div class="container2 d-flex justify-content-center">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-<div class="contain">
-  <div class="field row mt">
-    <h6 class="col-2">이메일 </h6><br />
+   <div>
+    <h2 class="font-weight-bold mt">Sign up</h2>
+  </div>
+  
+  <div class="mt">
+    <h6 class="d-flex justify-content-start">이메일 </h6>
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <div class="field row mt">
-    <h6 class="col-2">닉네임 </h6><br />
+  <div class="mt">
+    <h6 class="d-flex justify-content-start">닉네임 </h6>
     <%= f.text_field :name, autofocus: true %>
   </div>
-
-   <div class="field">
-    <%= f.label "프로필 사진" %><br />
-    <%= f.file_field :avatar %>
+   <div class="mt">
+    <h6 class="d-flex justify-content-start"><label for="user_프로필사진">프로필사진</label></h6>
+    <%= f.file_field :avatar, class: "image" %>
   </div>
-
   
-  <div class="field row mt">
-    <h6 class="col-2">아티스트 그룹 선택 </h6><br />
+<div> 
+  <input type="button" class="btn" id="profile" value="프로필 찾기"><br>
+</div>
+
+  <!--input 태그를 숨기고 button id="open_upload"로 input를 실행시켜 img태그에 미리보기를 보여준다.
+  스크립트 태그로 file의 데이터를 읽어 img url를 바꿔즈는  코드를 사용했으며
+  jQuery로 input태그를 hide() 숨겼고, button id로 통해 input 태그가 눌리도록 jQuery 코드를 만들었습니다.
+  궁금한 것은 카톡 부탁드립니다-->
+    <div id="image_preview">
+      <img class="img2" src="" height="200" alt="이미지 미리보기...">
+    </div>
+
+
+  <div class="mt">
+    <h6 class="d-flex justify-content-start">아티스트 그룹 선택 </h6>
     <select name="user[artist]" id="user_artist">
         <option value="작사가">작사가</option>
         <option value="작곡가">작곡가</option>
@@ -100,34 +133,86 @@ a:not([href]):not([tabindex]) {
     </select>  
   </div>
 
-  <div class="field row mt">
-    <h6 class="col-2">주요 장르 선택 </h6><br />
+  <div class="mt">
+    <h6 class="d-flex justify-content-start">주요 장르 선택 </h6>
     <select name="user[genre]" id="user_genre">
         <option value="발라드">발라드</option>
         <option value="힙합">힙합</option>
         <option value="R&B">R&B</option>
         <option value="댄스">댄스</option>
         <option value="Electronic">Electronic</option>
-    </select>  
+    </select>
   </div>
 
-  <div class="field row mt">
-    <h6 class="col-2">비밀번호 </h6>
+  <div class="field mt">
+    <h6 class="d-flex justify-content-start">비밀번호 </h6>
     
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
-  <w>비밀번호는 <%= @minimum_password_length %>자 이상으로 입력하세요.</w>
+  <w class="d-flex justify-content-start">**비밀번호는 <%= @minimum_password_length %>자 이상으로 입력하세요.</w>
 
-  <div class="field row mt">
-    <h6 class="col-2">비밀번호 확인</h6>
+  <div class="field mt">
+    <h6 class="d-flex justify-content-start">비밀번호 확인</h6>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-
-  <div class="actions">
-    <input type="submit" value="Sign up">
+<br/>
+  <div class="mb-5">
+    <input type="submit" value="Sign up" class="btn">
   </div>
 <% end %>
+</div>
 
-<%= render "devise/shared/links" %>
-</div>
-</div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script>
+$('.image').hide();
+
+$('#profile').click(function(){
+  $('.image').click();
+});
+
+$('.image').on('change', function() {
+        
+        ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+        
+        //배열에 추출한 확장자가 존재하는지 체크
+        if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+            resetFormElement($(this)); //폼 초기화
+            window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+        } else {
+            file = $('.image').prop("files")[0];
+            blobURL = window.URL.createObjectURL(file);
+            $('#image_preview img').attr('src', blobURL);
+            $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
+        }
+    });
+
+    /**
+    onclick event handler for the delete button.
+    It removes the image, clears and unhides the file input field.
+    */
+    $('#image_preview a').bind('click', function() {
+        resetFormElement($('.image')); //전달한 양식 초기화
+        $('.image').slideDown(); //파일 양식 보여줌
+        $(this).parent().slideUp(); //미리 보기 영역 감춤
+        return false; //기본 이벤트 막음
+    });
+        
+
+    /** 
+    * 폼요소 초기화 
+    * Reset form element
+    * 
+    * @param e jQuery object
+    */
+    function resetFormElement(e) {
+        e.wrap('<form>').closest('form').get(0).reset(); 
+        //리셋하려는 폼양식 요소를 폼(<form>) 으로 감싸고 (wrap()) , 
+        //요소를 감싸고 있는 가장 가까운 폼( closest('form')) 에서 Dom요소를 반환받고 ( get(0) ),
+        //DOM에서 제공하는 초기화 메서드 reset()을 호출
+        e.unwrap(); //감싼 <form> 태그를 제거
+    }
+</script>
+
+
